@@ -194,7 +194,8 @@ public class PinotResultSet extends AbstractBaseResultSet {
       throws SQLException {
     try {
       String value = getString(columnIndex);
-      return value == null ? null : new BigDecimal(value).setScale(scale);
+      int actualScale = getScale(value);
+      return value == null ? null : new BigDecimal(value).setScale(actualScale);
     } catch (Exception e) {
       throw new SQLException("Unable to fetch BigDecimal value", e);
     }
@@ -480,5 +481,13 @@ public class PinotResultSet extends AbstractBaseResultSet {
   public boolean wasNull()
       throws SQLException {
     return _wasNull;
+  }
+
+  private int getScale(String value) {
+    int index = value.indexOf(".");
+    if (index == -1) {
+      return 0;
+    }
+    return value.length() - index - 1;
   }
 }

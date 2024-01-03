@@ -51,7 +51,6 @@ public abstract class AbstractBaseConnection implements Connection {
   @Override
   public void clearWarnings()
       throws SQLException {
-    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
@@ -111,13 +110,12 @@ public abstract class AbstractBaseConnection implements Connection {
   @Override
   public boolean getAutoCommit()
       throws SQLException {
-    throw new SQLFeatureNotSupportedException();
+    return false;
   }
 
   @Override
   public void setAutoCommit(boolean autoCommit)
       throws SQLException {
-    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
@@ -188,7 +186,6 @@ public abstract class AbstractBaseConnection implements Connection {
   @Override
   public void setTransactionIsolation(int level)
       throws SQLException {
-    throw new SQLFeatureNotSupportedException();
   }
 
   @Override
@@ -297,15 +294,11 @@ public abstract class AbstractBaseConnection implements Connection {
 
   @Override
   public void rollback()
-      throws SQLException {
-    throw new SQLFeatureNotSupportedException();
-  }
+      throws SQLException {}
 
   @Override
   public void rollback(Savepoint savepoint)
-      throws SQLException {
-    throw new SQLFeatureNotSupportedException();
-  }
+      throws SQLException {}
 
   @Override
   public void setClientInfo(String name, String value)
